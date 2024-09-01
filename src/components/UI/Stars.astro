@@ -1,0 +1,200 @@
+---
+
+---
+
+<script>
+  const svg = document.getElementById("stars") as HTMLElement;
+  const stars = svg.querySelectorAll("path");
+  const colorTo = "var(--text)";
+  const offset = -50;
+
+  stars.forEach((star, index) => {
+    if (index < stars.length - 1) {
+      const nextStar = stars[index + 1];
+
+      const currentBBox = star.getBBox();
+      const nextBBox = nextStar.getBBox();
+
+      const currentCenter = {
+        x: currentBBox.x + currentBBox.width / 2,
+        y: currentBBox.y + currentBBox.height / 2,
+      };
+
+      const nextCenter = {
+        x: nextBBox.x + nextBBox.width / 2,
+        y: nextBBox.y + nextBBox.height / 2,
+      };
+
+      // Calculate the angle of the line
+      const angle = Math.atan2(
+        nextCenter.y - currentCenter.y,
+        nextCenter.x - currentCenter.x
+      );
+
+      // Apply the offset to start and end points
+      const startX = currentCenter.x - offset * Math.cos(angle);
+      const startY = currentCenter.y - offset * Math.sin(angle);
+      const endX = nextCenter.x + offset * Math.cos(angle);
+      const endY = nextCenter.y + offset * Math.sin(angle);
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      line.setAttribute("x1", startX.toString());
+      line.setAttribute("y1", startY.toString());
+      line.setAttribute("x2", endX.toString());
+      line.setAttribute("y2", endY.toString());
+      line.setAttribute("stroke", "var(--text)");
+      line.setAttribute("stroke-width", "2");
+
+      // Initial style for line, hidden
+      line.style.strokeDasharray = "0 100%";
+      line.style.strokeDashoffset = "100%";
+      line.style.opacity = "0";
+      line.style.transition = "none";
+
+      svg.appendChild(line);
+
+      // Animate each line one by one
+      setTimeout(() => {
+        line.style.transition = "stroke-dasharray 2s ease-out, opacity 0.5s";
+        line.style.strokeDasharray = "100% 0";
+        line.style.strokeDashoffset = "0";
+        line.style.opacity = "1";
+        star.style.fill = colorTo;
+      }, index * 500); // Adjust the timing between lines
+    } else {
+      const nextStar = stars[3];
+
+      const currentBBox = star.getBBox();
+      const nextBBox = nextStar.getBBox();
+
+      const currentCenter = {
+        x: currentBBox.x + currentBBox.width / 2,
+        y: currentBBox.y + currentBBox.height / 2,
+      };
+
+      const nextCenter = {
+        x: nextBBox.x + nextBBox.width / 2,
+        y: nextBBox.y + nextBBox.height / 2,
+      };
+
+      // Calculate the angle of the line
+      const angle = Math.atan2(
+        nextCenter.y - currentCenter.y,
+        nextCenter.x - currentCenter.x
+      );
+
+      // Apply the offset to start and end points
+      const startX = currentCenter.x - offset * Math.cos(angle);
+      const startY = currentCenter.y - offset * Math.sin(angle);
+      const endX = nextCenter.x + offset * Math.cos(angle);
+      const endY = nextCenter.y + offset * Math.sin(angle);
+
+      const line = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "line"
+      );
+      line.setAttribute("x1", startX.toString());
+      line.setAttribute("y1", startY.toString());
+      line.setAttribute("x2", endX.toString());
+      line.setAttribute("y2", endY.toString());
+      line.setAttribute("stroke", "var(--text)");
+      line.setAttribute("stroke-width", "2");
+
+      // Initial style for line, hidden
+      line.style.strokeDasharray = "0 100%";
+      line.style.strokeDashoffset = "100%";
+      line.style.opacity = "0";
+      line.style.transition = "none";
+
+      svg.appendChild(line);
+
+      // Animate each line one by one
+      setTimeout(() => {
+        line.style.transition = "stroke-dasharray 2s ease-out, opacity 0.5s";
+        line.style.strokeDasharray = "100% 0";
+        line.style.strokeDashoffset = "0";
+        line.style.opacity = "1";
+        star.style.fill = colorTo;
+      }, index * 500); // Adjust the timing between lines
+    }
+  });
+</script>
+<svg
+  width="200"
+  height="200"
+  viewBox="0 0 578 1292"
+  id="stars"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-label="Little Bear"
+>
+  <path
+    d="M431.004 2.8467C432.815 -0.948905 438.218 -0.948899 440.029 2.84671L448.749 21.1198C449.478 22.6473 450.93 23.7024 452.608 23.9236L472.681 26.5696C476.851 27.1193 478.52 32.2576 475.47 35.1531L460.786 49.0925C459.558 50.2577 459.004 51.9649 459.312 53.6292L462.998 73.5376C463.764 77.6729 459.393 80.8485 455.697 78.8424L437.902 69.1844C436.414 68.377 434.619 68.377 433.132 69.1844L415.337 78.8424C411.641 80.8486 407.27 77.6729 408.035 73.5376L411.722 53.6292C412.03 51.9649 411.475 50.2577 410.248 49.0925L395.563 35.1531C392.513 32.2576 394.183 27.1193 398.352 26.5696L418.426 23.9236C420.104 23.7024 421.556 22.6473 422.285 21.1198L431.004 2.8467Z"
+  ></path>
+
+  <path
+    d="M287.004 215.847C288.815 212.051 294.218 212.051 296.029 215.847L304.749 234.12C305.478 235.647 306.93 236.702 308.608 236.924L328.681 239.57C332.851 240.119 334.52 245.258 331.47 248.153L316.786 262.092C315.558 263.258 315.004 264.965 315.312 266.629L318.998 286.538C319.764 290.673 315.393 293.849 311.697 291.842L293.902 282.184C292.414 281.377 290.619 281.377 289.132 282.184L271.337 291.842C267.641 293.849 263.27 290.673 264.035 286.538L267.722 266.629C268.03 264.965 267.475 263.258 266.248 262.092L251.563 248.153C248.513 245.258 250.183 240.119 254.352 239.57L274.426 236.924C276.104 236.702 277.556 235.647 278.285 234.12L287.004 215.847Z"
+  ></path>
+  <path
+    d="M144.004 472.847C145.815 469.051 151.218 469.051 153.029 472.847L161.749 491.12C162.478 492.647 163.93 493.702 165.608 493.924L185.681 496.57C189.851 497.119 191.52 502.258 188.47 505.153L173.786 519.092C172.558 520.258 172.004 521.965 172.312 523.629L175.998 543.538C176.764 547.673 172.393 550.849 168.697 548.842L150.902 539.184C149.414 538.377 147.619 538.377 146.132 539.184L128.337 548.842C124.641 550.849 120.27 547.673 121.035 543.538L124.722 523.629C125.03 521.965 124.475 520.258 123.248 519.092L108.563 505.153C105.513 502.258 107.183 497.119 111.352 496.57L131.426 493.924C133.104 493.702 134.556 492.647 135.285 491.12L144.004 472.847Z"
+  ></path>
+  <path
+    d="M227.004 768.847C228.815 765.051 234.218 765.051 236.029 768.847L244.749 787.12C245.478 788.647 246.93 789.702 248.608 789.924L268.681 792.57C272.851 793.119 274.52 798.258 271.47 801.153L256.786 815.092C255.558 816.258 255.004 817.965 255.312 819.629L258.998 839.538C259.764 843.673 255.393 846.849 251.697 844.842L233.902 835.184C232.414 834.377 230.619 834.377 229.132 835.184L211.337 844.842C207.641 846.849 203.27 843.673 204.035 839.538L207.722 819.629C208.03 817.965 207.475 816.258 206.248 815.092L191.563 801.153C188.513 798.258 190.183 793.119 194.352 792.57L214.426 789.924C216.104 789.702 217.556 788.647 218.285 787.12L227.004 768.847Z"
+  ></path>
+  <path
+    d="M37.0041 902.847C38.8153 899.051 44.2181 899.051 46.0293 902.847L54.7488 921.12C55.4777 922.647 56.9299 923.702 58.6079 923.924L78.6811 926.57C82.8506 927.119 84.5202 932.258 81.47 935.153L66.7858 949.092C65.5582 950.258 65.0035 951.965 65.3117 953.629L68.9981 973.538C69.7639 977.673 65.3929 980.849 61.6966 978.842L43.9018 969.184C42.4142 968.377 40.6192 968.377 39.1316 969.184L21.3368 978.842C17.6405 980.849 13.2696 977.673 14.0353 973.538L17.7217 953.629C18.0299 951.965 17.4752 950.258 16.2477 949.092L1.5634 935.153C-1.48675 932.258 0.182809 927.119 4.35233 926.57L24.4255 923.924C26.1036 923.702 27.5558 922.647 28.2847 921.12L37.0041 902.847Z"
+  ></path>
+  <path
+    d="M310.004 1214.85C311.815 1211.05 317.218 1211.05 319.029 1214.85L327.749 1233.12C328.478 1234.65 329.93 1235.7 331.608 1235.92L351.681 1238.57C355.851 1239.12 357.52 1244.26 354.47 1247.15L339.786 1261.09C338.558 1262.26 338.004 1263.96 338.312 1265.63L341.998 1285.54C342.764 1289.67 338.393 1292.85 334.697 1290.84L316.902 1281.18C315.414 1280.38 313.619 1280.38 312.132 1281.18L294.337 1290.84C290.641 1292.85 286.27 1289.67 287.035 1285.54L290.722 1265.63C291.03 1263.96 290.475 1262.26 289.248 1261.09L274.563 1247.15C271.513 1244.26 273.183 1239.12 277.352 1238.57L297.426 1235.92C299.104 1235.7 300.556 1234.65 301.285 1233.12L310.004 1214.85Z"
+  ></path>
+  <path
+    d="M531.004 1079.85C532.815 1076.05 538.218 1076.05 540.029 1079.85L548.749 1098.12C549.478 1099.65 550.93 1100.7 552.608 1100.92L572.681 1103.57C576.851 1104.12 578.52 1109.26 575.47 1112.15L560.786 1126.09C559.558 1127.26 559.004 1128.96 559.312 1130.63L562.998 1150.54C563.764 1154.67 559.393 1157.85 555.697 1155.84L537.902 1146.18C536.414 1145.38 534.619 1145.38 533.132 1146.18L515.337 1155.84C511.641 1157.85 507.27 1154.67 508.035 1150.54L511.722 1130.63C512.03 1128.96 511.475 1127.26 510.248 1126.09L495.563 1112.15C492.513 1109.26 494.183 1104.12 498.352 1103.57L518.426 1100.92C520.104 1100.7 521.556 1099.65 522.285 1098.12L531.004 1079.85Z"
+  ></path>
+  <text
+    x="600"
+    y="70"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+  >
+    {"α"}
+  </text>
+  <text
+    x="400"
+    y="275"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+  >
+    {"δ"}
+  </text>
+  <text
+    x="275"
+    y="530"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+    >{"ε"}
+  </text>
+  <text
+    x="305"
+    y="830"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+    >{"ζ"}
+  </text>
+  <text
+    x="10"
+    y="830"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+    >{"η"}
+  </text>
+  <text
+    x="150"
+    y="1280"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+    >{"γ"}
+  </text>
+  <text
+    x="520"
+    y="1040"
+    class="font-bold fill-text text-7xl opacity-0 group-hover/container:opacity-100 group-hover/container:transition-opacity group-hover/container:duration-500 transition-opacity duration-500"
+    >{"β"}
+  </text>
+</svg>

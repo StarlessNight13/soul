@@ -1,0 +1,67 @@
+---
+import Construction from "./Construction.astro";
+interface Props {
+  title: string;
+  disabled: boolean;
+  state: string;
+  id: string;
+  uri: string;
+  link: string;
+  description: string;
+  techstack: string[];
+}
+const { disabled, state, id, description, techstack, title, link, uri } =
+  Astro.props;
+---
+
+<div
+  class={" flex flex-col items-center justify-center relative  bg-surface0 bg-opacity-75 rounded-md overflow-clip pb-1 aria-disabled:grayscale aria-disabled:pointer-events-none"}
+  aria-disabled={disabled}
+>
+  <span
+    class={"absolute top-2 right-2 p-1 rounded-lg text-xs z-10 bg-opacity-80  pointer-events-none  " +
+      (state === "Complete" ? "bg-green text-black" : "bg-gray-600")}
+  >
+    {state}
+  </span>
+  <a
+    href={link}
+    class="w-full grayscale hover:grayscale-0 transition-all duration-700 p-1 rounded-lg flex-1"
+  >
+    <span
+      class="absolute top-2 left-2 p-1 rounded-lg text-xs z-10 bg-opacity-30 bg-black"
+    >
+      🔗
+    </span>
+    {
+      state === "Complete" ? (
+        <img src={`screenshots/${id}.png`} alt={id} class=" object-cover rounded-lg" />
+      ) : (
+        <Construction />
+      )
+    }
+  </a>
+  <div class="p-1 px-4 h-1/5 text-center w-full flex-grow">
+    <a href={uri} class="text-center text-xl font-bol">
+      {title}
+    </a>
+
+    <p
+      class="text-sm text-rosePine-muted truncate relative before:absolute before:content-[attr(aria-details)]"
+      aria-details={description}
+    >
+      {description}
+    </p>
+    <div class="flex flex-row flex-wrap gap-1 text-xs mt-1 text-subtext1">
+      {
+        techstack.map((e: unknown) => {
+          return (
+            <span class="flex-1 rounded-sm bg-overlay0 p-1 align-middle">
+              {e}
+            </span>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
