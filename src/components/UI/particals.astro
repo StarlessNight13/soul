@@ -1,8 +1,8 @@
 ---
-const { className } = Astro.props;
+
 ---
 
-<div class={className + " absolute size-full inset-0 z-10 hidden dark:block"}>
+<div class="absolute inset-0 z-10 hidden size-full dark:block">
   <canvas id="particles" class="size-full"></canvas>
   <script is:inline>
     const canvas = document.getElementById("particles");
