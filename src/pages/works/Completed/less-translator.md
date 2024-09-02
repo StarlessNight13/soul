@@ -10,9 +10,7 @@ link: "https://lesstr.vercel.app/"
 
 # what is this?
 
-I created this project when I started my web development journey. The idea was to build a translator that could detect untranslated text and offer an option to look it up in a dictionary. Unfortunately, making text detection multilingual has proven to be difficult.
-
-- If I have time, I plan to implement text detection for Latin characters only.
+The idea was to build a translator that could detect untranslated text and offer an option to look it up in a dictionary. Unfortunately, making text detection multilingual has proven to be difficult. If I have time, I plan to implement text detection for Latin characters only.
 
 # What dose it do?
 
