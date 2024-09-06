@@ -1,5 +1,7 @@
 ---
 import Construction from "./Construction.astro";
+import { Image } from "astro:assets";
+
 interface Props {
   title: string;
   disabled: boolean;
@@ -12,11 +14,14 @@ interface Props {
 }
 const { disabled, state, id, description, techstack, title, link, uri } =
   Astro.props;
+
+const imagePath = `/soul/screenshots/${id}.png`;
 ---
 
 <div
-  class={" flex flex-col items-center justify-center relative  bg-surface0 bg-opacity-75 rounded-md overflow-clip pb-1 aria-disabled:grayscale aria-disabled:pointer-events-none"}
+  class={" flex flex-col items-center justify-center relative data-[state='dealyed']:sepia  bg-surface0 bg-opacity-75 rounded-md overflow-clip pb-1 aria-disabled:grayscale aria-disabled:pointer-events-none"}
   aria-disabled={disabled}
+  data-state={state}
 >
   <span
     class={"absolute top-2 right-2 p-1 rounded-lg text-xs z-10 bg-opacity-80  pointer-events-none  " +
@@ -26,33 +31,39 @@ const { disabled, state, id, description, techstack, title, link, uri } =
   </span>
   <a
     href={link}
-    class="w-full grayscale hover:grayscale-0 transition-all duration-700 p-1 rounded-lg flex-1"
+    class="flex w-full flex-1 flex-col items-center rounded-lg p-1 grayscale transition-all duration-700 hover:grayscale-0"
   >
     <span
-      class="absolute top-2 left-2 p-1 rounded-lg text-xs z-10 bg-opacity-30 bg-black"
+      class="absolute left-2 top-2 z-10 rounded-lg bg-black bg-opacity-30 p-1 text-xs"
     >
       🔗
     </span>
     {
       state === "Complete" ? (
-        <img src={`screenshots/${id}.png`} alt={id} class=" object-cover rounded-lg" />
+        <Image
+          src={imagePath}
+          width="500"
+          height="500"
+          alt={id}
+          class="rounded-lg object-cover"
+        />
       ) : (
         <Construction />
       )
     }
   </a>
-  <div class="p-1 px-4 h-1/5 text-center w-full flex-grow">
-    <a href={uri} class="text-center text-xl font-bol">
+  <div class="h-1/5 w-full flex-grow p-1 px-4 text-center">
+    <a href={uri} class="font-bol text-center text-xl">
       {title}
     </a>
 
     <p
-      class="text-sm text-rosePine-muted truncate relative before:absolute before:content-[attr(aria-details)]"
+      class="relative truncate text-sm text-rosePine-muted before:absolute before:content-[attr(aria-details)]"
       aria-details={description}
     >
       {description}
     </p>
-    <div class="flex flex-row flex-wrap gap-1 text-xs mt-1 text-subtext1">
+    <div class="mt-1 flex flex-row flex-wrap gap-1 text-xs text-subtext1">
       {
         techstack.map((e: unknown) => {
           return (
