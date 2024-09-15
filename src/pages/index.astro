@@ -22,11 +22,11 @@ const completedWorks = await Astro.glob<Frontmatter>(
 
 <Layout title="Deus Mechanicus">
   <main
-    class="flex flex-col justify-center gap-20 from-black to-base to-50% px-4 dark:bg-gradient-to-b"
+    class="flex flex-col justify-center gap-20 from-black to-base to-50% px-4 sm:to-70% dark:bg-gradient-to-b"
   >
     <div class="relative flex select-none flex-col justify-center p-4">
       <div class="relative flex h-dvh items-center justify-center">
-        <Particals />
+        <!-- <Particals /> -->
         <div
           class="z-20 flex h-fit flex-col items-center justify-center gap-2 rounded-xl bg-mantle p-9 px-20 hover:shadow-text hover:transition-colors sm:hover:shadow-sm md:flex-row dark:bg-black/60 dark:hover:bg-black/80"
         >
@@ -36,7 +36,7 @@ const completedWorks = await Astro.glob<Frontmatter>(
             <Stars />
           </div>
           <h1
-            class="whitespace-nowrap font-chakra text-7xl font-extrabold"
+            class="whitespace-nowrap font-chakra text-3xl font-extrabold sm:text-7xl"
             id="name"
           >
             <span
@@ -71,7 +71,9 @@ const completedWorks = await Astro.glob<Frontmatter>(
           </h1>
         </div>
       </div>
-      <div class="flex select-text items-center justify-center gap-5">
+      <div
+        class="flex select-text flex-col items-center justify-center gap-5 sm:flex-row"
+      >
         <span
           class="relative w-fit font-chakra text-3xl font-extrabold text-rosePineDawn-muted"
         >
@@ -85,7 +87,7 @@ const completedWorks = await Astro.glob<Frontmatter>(
         >
           For yesterday's
           <span
-            class="relative text-text after:pointer-events-none after:absolute after:right-1/2 after:top-0 after:-translate-x-1/2 after:rounded after:bg-mantle after:p-2 after:font-thin after:opacity-0 after:shadow-lg after:transition-all after:content-['299,792,458'] hover:after:-top-12 hover:after:opacity-100 sm:after:translate-x-1/2 dark:text-white"
+            class="relative text-text after:absolute after:bottom-1 after:right-0 after:h-px after:w-1 after:rounded after:bg-white after:opacity-0 after:transition-all after:duration-500 hover:after:w-full hover:after:opacity-100 dark:text-white"
           >
             Starlight</span
           >.
@@ -94,7 +96,7 @@ const completedWorks = await Astro.glob<Frontmatter>(
     </div>
     <div class="divide-y divide-dashed divide-rosePine-muted">
       <div class="flex flex-col p-5 pt-20 md:p-20">
-        <h1 class="mb-5 ml-20 text-3xl font-bold">My Works</h1>
+        <h1 class="mb-5 select-none text-center text-3xl font-bold">ᓚᘏᗢ</h1>
         <div
           class="grid grid-flow-row grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3"
         >
@@ -133,7 +135,7 @@ const completedWorks = await Astro.glob<Frontmatter>(
         </div>
       </div>
       <div class="hidden flex-col p-5 pt-20 md:p-20">
-        <h1 class="mb-5 ml-20 text-3xl font-bold">
+        <h1 class="mb-5 text-center text-3xl font-bold">
           lerned
           <span>
             <Library class="inline" />
@@ -146,7 +148,7 @@ const completedWorks = await Astro.glob<Frontmatter>(
       <div class="flex flex-col items-center justify-center p-5 pt-20 md:p-20">
         <a
           href="soul/aboutme"
-          class="relative mb-5 ml-20 text-center text-3xl font-bold text-text after:absolute after:bottom-0 after:right-1/2 after:h-px after:w-full after:translate-x-1/2 after:scale-0 after:bg-white after:transition-all hover:after:scale-100"
+          class="relative mb-5 text-center text-3xl font-bold text-text after:absolute after:bottom-0 after:right-1/2 after:h-px after:w-full after:translate-x-1/2 after:scale-0 after:bg-white after:transition-all hover:after:scale-100"
           >About me</a
         >
       </div>
